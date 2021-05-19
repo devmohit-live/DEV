@@ -1,0 +1,2 @@
+this is the output data.
+this is appended data using appendFileSynce method
