@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+            /* as scroll bar appears bcz canvas internally gives some spacing additionallty */
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+        <canvas>
+
+        </canvas>
+        <script>
+            let canvas = document.querySelector('canvas');
+
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+
+            //getting the appropriate tool acc to req.
+            // for 2d= 2d , for 3d= webgl
+            let tool = canvas.getContext("2d");
+
+            // giving the intial position to tool/cursor
+            tool.moveTo(0,0);
+
+            //draw
+            tool.lineTo(400,400);
+            tool.strokeStyle= "red";
+            tool.lineWidth = 25
+
+            // making the drawings visible, used at last
+            tool.stroke();
+
+            //starting the new path
+            tool.beginPath();
+            tool.moveTo(450,400) //path has been changed so reinitalization of position should be done
+            tool.strokeStyle="blue";
+            tool.lineTo(800,0);
+
+            // // tool.moveTo(500,500);
+            // toll.fillStyle="red";
+            tool.stroke(); // stroke is for line
+
+            
+            tool.fillRect(325,350,200,200);
+
+
+        </script>
+</body>
+</html>

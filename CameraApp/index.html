@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera App</title>
+</head>
+<body>
+    
+    <!-- video has src for links or srcObject that accepts an media stream object  -->
+    <video controls autoplay></video>
+    <button id="start" >Start Recording</button>
+    <button id="stop" >Stop Recording</button>
+
+    <script>
+
+        let video = document.querySelector('video');
+        let startBtn = document.querySelector('#start');
+        let stopBtn = document.querySelector('#stop');
+        let chunks=[];
+        let mediaRecorder;
+
+        //adding evenets on btn
+        startBtn.addEventListener('click',function(e){
+            mediaRecorder.start();
+        });
+        stopBtn.addEventListener('click',function(e){
+            mediaRecorder.stop();
+        });
+
+
+        // navigator.mediaDevices.getUserMedia takes object of devices required and is a promise
+        // asks a single permission for both audio and video
+        navigator.mediaDevices.getUserMedia({video: true, audio:true})
+        .then( function(mediaStream){
+            //resolving promise
+
+            /*
+            //in case of blank video/codec problem
+            let option = {mimeType: 'video/webm'};
+            mediaRecorder = new MediaRecorder(mediaStream,option);
+            */
+            mediaRecorder = new MediaRecorder(mediaStream);
+
+            //dataavailabe
+            mediaRecorder.addEventListener('dataavailable', function(e){
+                chunks.push(e.data);
+            } );
+
+
+            //stop
+            mediaRecorder.addEventListener('stop',function(e){
+                let blob = new Blob(chunks, {type: "video/mp4"});
+
+                //in case of option is provided to mediaRecorder
+                // let blob = new Blob(chunks, {type: "video/mp4"});
+
+                chunks=[] //clearing for further recordings
+
+                // creating anchor 
+                let a = document.createElement('a');
+
+                //creating URL and attaching that to anchor
+                let url = window.URL.createObjectURL(blob);
+                a.href = url;
+
+                //Naming the file to be downloaded
+                a.download= "video.mp4"
+                // a.download= "video.webm"
+
+                //clicking the anchor
+                a.click();
+                //no need or anchor now
+                a.remove();
+            });
+
+            video.srcObject = mediaStream;
+        })
+        .catch(function(err){
+            // when promise is rejected
+            console.log(err); //Permission Denied.
+        });
+
+
+        //  we can make seperate permission for audio and video => seperate objects and the we have to  sync audio and video
+
+    </script>
+</body>
+</html>
