@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task</title>
+    <!-- make an box to turn into a circle while it grows and reverse the process while it shrinks -->
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      .container {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        align-items: center;
+        justify-content: center;
+      }
+      .box {
+        height: 10rem;
+        width: 10rem;
+        background-color: red;
+        animation: myAnimation;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes myAnimation {
+        /* intial stage to give a refrence point for maipulation over properties */
+        0% {
+          transform: scale(1);
+          border-radius: 0%;
+        }
+        50% {
+          transform: scale(3);
+          border-radius: 50%;
+        }
+        /* final stage */
+        100% {
+          transform: scale(1);
+          border-radius: 0%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+    </div>
+  </body>
+</html>
