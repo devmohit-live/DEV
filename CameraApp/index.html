@@ -4,34 +4,48 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Camera App</title>
   </head>
   <body>
     <!-- video has src for links or srcObject that accepts an media stream object  -->
-    <video controls autoplay></video>
-    <button id="start">Start Recording</button>
-    <button id="stop">Stop Recording</button>
-    <button id="capture">Capture</button>
+   <!-- added extra container to avoid overflow -->
+    <div class="container">
+      <div id="video-container "><video autoplay muted></video></div>
+    </div>
+
+    <button id="recording"><div></div></button>
+    <button id="capture"><div></div></button>
 
     <script>
       let video = document.querySelector("video");
-      let startBtn = document.querySelector("#start");
-      let stopBtn = document.querySelector("#stop");
+      let recBtn = document.querySelector("#recording");
+      let recDiv = recBtn.querySelector("div");
       let capBtn = document.querySelector("#capture");
-
+      let capDiv = capBtn.querySelector("div");
+      let isRecording = false;
       let chunks = [];
       let mediaRecorder;
 
-      //adding evenets on btn
-      startBtn.addEventListener("click", function (e) {
-        mediaRecorder.start();
-      });
-      stopBtn.addEventListener("click", function (e) {
-        mediaRecorder.stop();
+      //single btn
+      recBtn.addEventListener("click", function (e) {
+        if (isRecording == false) {
+          isRecording = true;
+          mediaRecorder.start();
+          recDiv.classList.add("recording-animation");
+        } else {
+          isRecording = false;
+          mediaRecorder.stop();
+          recDiv.classList.remove("recording-animation");
+        }
       });
 
       capBtn.addEventListener("click", function (e) {
         let canvas = document.createElement("canvas");
+        capDiv.classList.add("capture-animation");
+        setTimeout(function (e) {
+          capDiv.classList.remove("capture-animation");
+        }, 1000);
         // get the current camera'sresolution
         canvas.height = video.videoHeight;
         canvas.width = video.videoWidth;
@@ -91,7 +105,9 @@
             //no need or anchor now
             a.remove();
           });
-
+          video.height = screen.height;
+          video.width = screen.width;
+          video.style.overflow = "hidden";
           video.srcObject = mediaStream;
         })
         .catch(function (err) {

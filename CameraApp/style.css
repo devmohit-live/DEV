@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background-color: black;
+}
+
+#capture,
+#recording {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  position: fixed;
+  background-color: black;
+  border: 5px solid white;
+}
+#recording {
+  top: 30vh;
+  right: 20px;
+}
+#capture {
+  top: 45vh;
+  right: 20px;
+}
+.container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* bcz video gives extra padding and scrollbar*/
+#video-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#recording div {
+  height: 60%;
+  width: 68%;
+  margin: auto;
+  border-radius: 50%;
+  background-color: red;
+}
+#capture div {
+  height: 60%;
+  width: 68%;
+  margin: auto;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.recording-animation {
+  animation: zoom-in-out 0.8s infinite;
+}
+.capture-animation {
+  animation: zoom-in-out 1s;
+}
+
+@keyframes zoom-in-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
