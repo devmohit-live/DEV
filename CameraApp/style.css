@@ -42,7 +42,7 @@ body {
 /* using object fit property */
 video {
   object-fit: cover;
-  width: 100cw;
+  width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -109,4 +109,27 @@ video {
   position: fixed;
   top: 0;
   z-index: 1;
+}
+
+.zoom-container {
+  height: 20vh;
+  width: 6rem;
+  position: fixed;
+  top: 5vh;
+  right: 10px;
+  z-index: 3;
+}
+
+.zoom-in,
+.zoom-out {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  font-size: larger;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
 }
