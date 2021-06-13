@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+ body{
+    margin:0;
+    background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Open Sans", sans-serif;
+ }
+ form{
+   border-radius: 10px;
+   height:22rem;
+   width:30rem;
+   text-align: center;
+   border: 1px solid #00C9FF;
+   background-color: white;
+   padding: 20px;
+   box-shadow: 0px 0px 4px 1px white;
+
+ }
+ [type="text"]{
+   height:3rem;
+   width:80%;
+   border: 1px solid #00C9FF;
+   outline: none;
+   padding:10px;
+   margin-bottom:20px;
+   border-radius:10px;
+
+ }
+ [type="submit"]
+{
+  margin-top: 20px;
+  height:2.5rem;
+  width:50%;
+  background-color: #00C9FF;
+  color:whitesmoke;
+  border-radius: 5px;
+} 
+
+    </style>
+   
+  </head>
+  <body>
+      <!-- Q- Without changing the html style the form below according to image-final. Required fonts have already been added and you can use them by:
+         font-family: "Open Sans", sans-serif;-->
+    <form>
+      <h2>LOG IN</h2>
+      <input type="text" placeholder="Username" />
+      <input type="text" placeholder="Password" />
+      <input type="submit" value="LOGIN" />
+    </form>
+  </body>
+</html>
