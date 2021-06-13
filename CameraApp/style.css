@@ -16,6 +16,7 @@ body {
   position: fixed;
   background-color: black;
   border: 5px solid white;
+  z-index: 2;
 }
 #recording {
   top: 30vh;
@@ -46,7 +47,28 @@ video {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 0;
 }
+
+.filter-container {
+  margin-top: 18vh;
+  width: 6rem;
+  height: 60vh;
+  border: 1px solid white;
+  position: fixed;
+  top: -1.5vh;
+  left: 0;
+  z-index: 2;
+}
+
+.filter {
+  height: calc(100% / 6);
+  width: 100%;
+  background: red;
+  background-image: url("i.jpg");
+  background-size: cover;
+}
+
 #recording div {
   height: 60%;
   width: 68%;
@@ -79,4 +101,12 @@ video {
   100% {
     transform: scale(1);
   }
+}
+
+.filter-div {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 1;
 }
