@@ -38,6 +38,15 @@ body {
   overflow: hidden;
 }
 
+/* using object fit property */
+video {
+  object-fit: cover;
+  width: 100cw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 #recording div {
   height: 60%;
   width: 68%;
