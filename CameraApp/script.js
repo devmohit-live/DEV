@@ -12,6 +12,11 @@ let filters = document.querySelectorAll(".filter");
 let currentZoom = 1;
 const minZoom = 1;
 const maxZoom = 3;
+let galleryBtn = document.querySelector('#gallery');
+
+galleryBtn.addEventListener("click",function(){
+location.assign("gallery.html")
+});
 
 //zoom functionalities
 
@@ -57,7 +62,7 @@ recBtn.addEventListener("click", function (e) {
     isRecording = true;
     mediaRecorder.start();
     appliedFilter = ""; //color remove -> no recording with filters
-    removeFilter(); //remove from ui too
+    removeFilters(); //remove from ui too
 
     //zooming not allowed in vide recording
     currentZoom=1;
@@ -99,13 +104,18 @@ capBtn.addEventListener("click", function (e) {
     tool.fillStyle = appliedFilter;
     tool.fillRect(0, 0, canvas.width, canvas.height);
   }
+
+  //saving
   let link = canvas.toDataURL();
-  let a = document.createElement("a");
-  a.href = link;
-  a.download = "image.jpg";
-  a.click();
-  a.remove();
-  canvas.remove();
+  addMedia(link,"image");
+
+// TODO:
+  // let a = document.createElement("a");
+  // a.href = link;
+  // a.download = "image.jpg";
+  // a.click();
+  // a.remove();
+  // canvas.remove();
 });
 
 
@@ -129,17 +139,20 @@ navigator.mediaDevices
     //stop
     mediaRecorder.addEventListener("stop", function (e) {
       let blob = new Blob(chunks, { type: "video/mp4" });
+      addMedia(blob,"video");
 
       //in case of option is provided to mediaRecorder
       // let blob = new Blob(chunks, {type: "video/mp4"});
 
       chunks = []; //clearing for further recordings
-      let a = document.createElement("a");
-      let url = window.URL.createObjectURL(blob);
-      a.href = url;
-      a.download = "video.mp4";
-      a.click();
-      a.remove();
+
+      // TODO: video
+      // let a = document.createElement("a");
+      // let url = window.URL.createObjectURL(blob);
+      // a.href = url;
+      // a.download = "video.mp4";
+      // a.click();
+      // a.remove();
     });
 
     // video.style.overflow = "hidden";

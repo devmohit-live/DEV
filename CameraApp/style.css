@@ -17,6 +17,7 @@ body {
   background-color: black;
   border: 5px solid white;
   z-index: 2;
+  margin-bottom: 20px;
 }
 #recording {
   top: 30vh;
@@ -24,6 +25,12 @@ body {
 }
 #capture {
   top: 45vh;
+  right: 20px;
+}
+#gallery {
+  position: fixed;
+  z-index: 2;
+  top: 60vh;
   right: 20px;
 }
 .container {
@@ -112,6 +119,7 @@ video {
 }
 
 .zoom-container {
+  margin-bottom: 20px;
   height: 20vh;
   width: 6rem;
   position: fixed;
@@ -122,6 +130,7 @@ video {
 
 .zoom-in,
 .zoom-out {
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -131,5 +140,4 @@ video {
   font-size: larger;
   font-weight: bold;
   color: white;
-  margin-bottom: 10px;
 }
