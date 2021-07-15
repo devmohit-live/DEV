@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .some-class {
+        height: 3rem;
+        border: 1px solid;
+        background-color: rgb(168, 47, 47);
+        color: white;
+        text-align: center;
+        font-size: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
+        minima!
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
+        minima!
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
+        minima!
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
+        minima!
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
+        minima!
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
+        minima!
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
+        minima!
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
+        minima!
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
+        minima!
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
+        minima!
+      </li>
+    </ul>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+      integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let clickCount = [];
+      let timer=[];
+
+      let li = document.querySelectorAll("li");
+      for (let i = 0; i < li.length; i++) {
+        clickCount.push(0);
+        timer.push(new Date().getTime().valueOf())
+        li[i].addEventListener("click", function (e) {
+          
+        clickCount[i]++;
+          if (clickCount[i] == 1) {
+            li[i].classList.add("some-class");
+          } else if (clickCount[i] == 2) {
+            li[i].classList.remove("some-class");
+          } else if (clickCount[i] == 3) {
+            li[i].remove();
+            clickCount[i] = 0;
+          }
+
+           li[i].disabled = true;
+
+            setTimeout(function() {
+                li[i].disabled = false;
+            }, 5000);
+
+            
+        });
+      } 
+    </script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "folders": [
+	{
+		"path": "..\\JavaScript\\WebScraping"
+	},
+	{
+		"path": "..\\JavaScript\\javascrip4"
+	},
+	{
+		"path": "."
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "DEV"
+  }
+}

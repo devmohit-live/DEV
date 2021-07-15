@@ -1,0 +1,37 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0 3rem;
+  margin: 0;
+}
+
+ul {
+  display: flex;
+}
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+header {
+  display: flex;
+  justify-content: space-between; /* Horizontal align*/
+  align-items: center; /* Vertical align*/
+}
+header h1 {
+  font-weight: 400;
+}
+
+.description {
+  display: flex;
+}
+
+.showcase > img {
+  height: 90vh;
+  width: auto;
+}
+/* 
+section {
+  display: flex;
+} */

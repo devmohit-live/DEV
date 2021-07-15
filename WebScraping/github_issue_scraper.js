@@ -2,8 +2,11 @@ const rq=require('request');
 const fs=require('fs');
 const cheerio=require('cheerio');
 const jspdf=require('jspdf');
-const { profileEnd } = require('console');
 let data ={};
+
+//WE have to process the file/object creartion thing at last and calling function under funtion due to the async behaviour 
+// as async behaviour makes the calling of async function at last causing inconsistent writing of data
+
 
 
 rq('https://github.com/topics',callback);
@@ -59,21 +62,6 @@ function getprojects(topicname,topiclink){
         //    console.log('Project: ',project,"Link: ",prolink);
         }
 
-
-    //     // console.log('\n#### Topic:',name,' --> Link:',link, '#####\n');
-    //    for(let i=0;i<5;i++){
-    //        let project = mt(projects[i]).text().trim();
-    //        let prolink ='https://github.com' + mt(projects[i]).attr('href');
-    //     //    let tmp={}
-    //     //    tmp['name']=project;
-    //     //    arr.push(tmp);
-    //        getIssues(topicname,project,prolink);
-    //     //    console.log('Project: ',project,"Link: ",prolink);
-    //    }
-
-        // data[name]=arr;
-
-        //fs.writeFileSync('Github.json',JSON.stringify(data));
     });
 }
 
@@ -94,12 +82,6 @@ function callback(error,response,html){
         }
         
         
-        // for (let i = 0; i < links.length; i++) {
-        //     let link = 'https://github.com/' +manipulator(links[i]).attr('href');
-        //     let topicname = manipulator(links[i]).find('p.f3').text().trim();
-        //     // console.log("name",name,"link: ",link);
-        //     getprojects(topicname,link);
-        // }
     }
 
 }
@@ -107,4 +89,8 @@ function callback(error,response,html){
 
 
 
-// "f3.color-text-secondary.text-normal.lh-condensed"
+// "f3.color-text-secondary.text-normal.lh-condensed" -> back class selector for project selection
+
+
+let doc = new jspdf.jsPDF();
+console.log(doc);
