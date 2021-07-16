@@ -1,6 +1,9 @@
 class  Input extends React.Component{
     state={task:""}
 
+    inv =()=>{
+        alert("Please enter a task!")
+    }
 
     render(){
         return(
@@ -14,7 +17,8 @@ class  Input extends React.Component{
             <button  onClick={
                 (e)=>{
                     // console.log(this.state.task);
-                    this.state.task!=""?this.props.taskHandlerFunction(this.state.task):0;
+                    let taksname = this.state.task.trim();
+                    taksname!=""?this.props.taskHandlerFunction(taksname):this.inv();
                     this.setState({task: ""});
                 }
             } >Add Task</button>
