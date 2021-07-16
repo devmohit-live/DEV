@@ -6,6 +6,17 @@
 li {
   margin-top: 8px;
 }
+
 button {
   margin-left: 8px;
+}
+
+.heading {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }

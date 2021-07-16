@@ -23,8 +23,8 @@
     render(){
         return(
         <div>
-            <p>App</p>
-            <Input taskHandlerFunction={this.taskHandler}/>
+            <p className="heading center">TODO App</p>
+            <Input  taskHandlerFunction={this.taskHandler}/>
             <List taskData={this.state.tasks} removeTaskHandler={this.removeTask}/>
         </div>
     );

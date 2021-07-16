@@ -4,7 +4,7 @@ class  Input extends React.Component{
 
     render(){
         return(
-        <div>
+        <div className="center">
           <input type="text" value={this.state.task} onChange={
               (e)=>{ 
                   this.setState({task : e.currentTarget.value});
@@ -14,7 +14,7 @@ class  Input extends React.Component{
             <button  onClick={
                 (e)=>{
                     // console.log(this.state.task);
-                    this.props.taskHandlerFunction(this.state.task);
+                    this.state.task!=""?this.props.taskHandlerFunction(this.state.task):0;
                     this.setState({task: ""});
                 }
             } >Add Task</button>
