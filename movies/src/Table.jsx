@@ -14,7 +14,10 @@ class Table extends React.Component {
       })
       .then((json) => {
         this.setState({ movies: json });
+        // hadler to sned no of movies to App
+        this.props.countHandler(json.length);
       });
+   
   }
 
   render() {
@@ -75,6 +78,9 @@ class Table extends React.Component {
                           return curr._id != el._id;
                         });
                         this.setState({ movies: arr });
+
+                        // update no of movies sent to App -> (Search)
+                        this.props.countHandler(arr.length);
                       }}
                     >
                       Delete

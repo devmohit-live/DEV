@@ -1,11 +1,12 @@
 import React from "react";
 class Search extends React.Component {
-  state = {};
+  state = {
+  };
 
   render() {
     return (
       <React.Fragment>
-        <p className="mt-4"> Showing 9 movies from Database..</p>
+        <p className="mt-4"> Showing {this.props.countOfMovies} movies from Database..</p>
 
         <button type="button" className="btn btn-primary mb-3">
           New
