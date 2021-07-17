@@ -1,4 +1,5 @@
 import React from "react";
+import { findRenderedDOMComponentWithClass } from "react-dom/cjs/react-dom-test-utils.production.min";
 
 class Table extends React.Component {
   state = {
@@ -52,7 +53,19 @@ class Table extends React.Component {
                   <td>{el.genre.name}</td>
                   <td>{el.numberInStock}</td>
                   <td>{el.dailyRentalRate}</td>
-                  <td>Like</td>
+                  <td
+                    onClick={() => {
+                      let allMovies = this.state.movies;
+                      let idx = allMovies.findIndex((e) => {
+                        return e._id == el._id;
+                      });
+                      allMovies[idx].liked = true;
+
+                      this.setState({ movies: allMovies });
+                    }}
+                  >
+                    {el.liked ? "Liked!" : "Like"}
+                  </td>
                   <td>
                     <button
                       type="button"
