@@ -1,13 +1,13 @@
 import React from "react";
-
 class Search extends React.Component {
   state = {};
 
   render() {
     return (
-      <div>
-        <p>Showing 9 movies from the database</p>
-        <button type="button" class="btn btn-primary mb-4">
+      <React.Fragment>
+        <p class="mt-4"> Showing 9 movies from Database..</p>
+
+        <button type="button" class="btn btn-primary mb-3">
           New
         </button>
 
@@ -15,10 +15,12 @@ class Search extends React.Component {
           <input
             type="text"
             class="form-control"
-            placeholder="Search..."
+            placeholder="Search.."
+            aria-label="Search"
+            aria-describedby="basic-addon1"
           />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
