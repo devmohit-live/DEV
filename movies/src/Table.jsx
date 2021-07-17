@@ -78,10 +78,9 @@ class Table extends React.Component {
 
     return (
       <React.Fragment>
-        <table class="table table-striped table-hover">
+        <table className="table table-striped table-hover">
           <thead>
-            <tr class="table-hover">
-              <th scope="col">#</th>
+            <tr className="table-hover">
               <th scope="col">Title</th>
               <th scope="col">Genre</th>
               <th scope="col">Rating</th>
@@ -94,14 +93,13 @@ class Table extends React.Component {
             {this.state.movies.map((el, index) => {
               return (
                 <tr key={index}>
-                  <th scope="row">{Number(index) + 1}</th>
                   <td>{el.title}</td>
                   <td>{el.genre.name}</td>
                   <td>{el.numberInStock}</td>
                   <td>{el.dailyRentalRate}</td>
                   <td>Like</td>
                   <td>
-                    <button type="button" class="btn btn-danger">
+                    <button type="button" className="btn btn-danger">
                       Delete
                     </button>
                   </td>
@@ -112,23 +110,23 @@ class Table extends React.Component {
         </table>
 
         <nav>
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#">
+          <ul className="pagination">
+            <li className="page-item">
+              <a className="page-link" href="#">
                 Previous
               </a>
             </li>
             {pages.map((el) => {
               return (
-                <li class="page-item">
-                  <a class="page-link" href="#">
+                <li className="page-item">
+                  <a className="page-link" href="#">
                     {el}
                   </a>
                 </li>
               );
             })}
-            <li class="page-item">
-              <a class="page-link" href="#">
+            <li className="page-item">
+              <a className="page-link" href="#">
                 Next
               </a>
             </li>

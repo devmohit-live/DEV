@@ -5,16 +5,16 @@ class Search extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <p class="mt-4"> Showing 9 movies from Database..</p>
+        <p className="mt-4"> Showing 9 movies from Database..</p>
 
-        <button type="button" class="btn btn-primary mb-3">
+        <button type="button" className="btn btn-primary mb-3">
           New
         </button>
 
-        <div class="input-group mb-3">
+        <div className="input-group mb-3">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             placeholder="Search.."
             aria-label="Search"
             aria-describedby="basic-addon1"
