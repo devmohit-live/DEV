@@ -2,79 +2,34 @@ import React from "react";
 
 class Table extends React.Component {
   state = {
-    movies: [
-      {
-        _id: "5b21ca3eeb7f6fbccd471815",
-        title: "Terminator",
-        genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
-        numberInStock: 6,
-        dailyRentalRate: 2.5,
-      },
-      {
-        _id: "5b21ca3eeb7f6fbccd471816",
-        title: "Die Hard",
-        genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
-        numberInStock: 5,
-        dailyRentalRate: 2.5,
-      },
-      {
-        _id: "5b21ca3eeb7f6fbccd471817",
-        title: "Get Out",
-        genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "Thriller" },
-        numberInStock: 8,
-        dailyRentalRate: 3.5,
-      },
-      {
-        _id: "5b21ca3eeb7f6fbccd471819",
-        title: "Trip to Italy",
-        genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
-        numberInStock: 7,
-        dailyRentalRate: 3.5,
-      },
-      {
-        _id: "5b21ca3eeb7f6fbccd47181a",
-        title: "Airplane",
-        genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
-        numberInStock: 7,
-        dailyRentalRate: 3.5,
-      },
-      {
-        _id: "5b21ca3eeb7f6fbccd47181b",
-        title: "Wedding Crashers",
-        genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
-        numberInStock: 7,
-        dailyRentalRate: 3.5,
-      },
-      {
-        _id: "5b21ca3eeb7f6fbccd47181e",
-        title: "Gone Girl",
-        genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "Thriller" },
-        numberInStock: 7,
-        dailyRentalRate: 4.5,
-      },
-      {
-        _id: "5b21ca3eeb7f6fbccd47181f",
-        title: "The Sixth Sense",
-        genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "Thriller" },
-        numberInStock: 4,
-        dailyRentalRate: 3.5,
-      },
-      {
-        _id: "5b21ca3eeb7f6fbccd471821",
-        title: "The Avengers",
-        genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
-        numberInStock: 7,
-        dailyRentalRate: 3.5,
-      },
-    ],
+    movies: [],
+    currPage: 1,
   };
 
+  componentDidMount() {
+    fetch("/movies")
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        this.setState({ movies: json });
+      });
+  }
+
   render() {
+    let numberOfPages = Math.ceil(this.state.movies.length / 5);
     let pages = [];
-    let noOfPages = Math.ceil(this.state.movies.length / 5);
-    for (let i = 1; i <= noOfPages; i++) {
+    for (let i = 1; i <= numberOfPages; i++) {
       pages.push(i);
     }
+
+    let starting = (this.state.currPage - 1) * 5;
+    let ending = this.state.currPage * 5 - 1;
+
+    let moviesToDisplay = this.state.movies.slice(
+      starting,
+      Math.min(ending, this.state.movies.length - 1) + 1
+    );
 
     return (
       <React.Fragment>
@@ -90,16 +45,25 @@ class Table extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.movies.map((el, index) => {
+            {moviesToDisplay.map((el) => {
               return (
-                <tr key={index}>
+                <tr key={el._id}>
                   <td>{el.title}</td>
                   <td>{el.genre.name}</td>
                   <td>{el.numberInStock}</td>
                   <td>{el.dailyRentalRate}</td>
                   <td>Like</td>
                   <td>
-                    <button type="button" className="btn btn-danger">
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => {
+                        let arr = this.state.movies.filter((curr) => {
+                          return curr._id != el._id;
+                        });
+                        this.setState({ movies: arr });
+                      }}
+                    >
                       Delete
                     </button>
                   </td>
@@ -111,21 +75,42 @@ class Table extends React.Component {
 
         <nav>
           <ul className="pagination">
-            <li className="page-item">
+            <li
+              className="page-item"
+              onClick={() => {
+                let currPage = this.state.currPage;
+                currPage--;
+                if (currPage < 1) currPage = 1;
+                this.setState({ currPage: currPage });
+              }}
+            >
               <a className="page-link" href="#">
                 Previous
               </a>
             </li>
             {pages.map((el) => {
               return (
-                <li className="page-item">
+                <li
+                  className="page-item"
+                  onClick={() => {
+                    this.setState({ currPage: el });
+                  }}
+                >
                   <a className="page-link" href="#">
                     {el}
                   </a>
                 </li>
               );
             })}
-            <li className="page-item">
+            <li
+              className="page-item"
+              onClick={() => {
+                let currPage = this.state.currPage;
+                currPage++;
+                if (currPage > numberOfPages) currPage = numberOfPages;
+                this.setState({ currPage: currPage });
+              }}
+            >
               <a className="page-link" href="#">
                 Next
               </a>
