@@ -35,7 +35,6 @@ class App extends React.Component {
 
     return (
       <React.Fragment>
-        <Navbar />
         <div className="row">
             <div className="col-2 p-4">
              <Category categoryHandler={this.receiveCategory}/>
