@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  let navlinks = document.querySelectorAll(".nav-link");
+  for (let i = 0; i < navlinks.length; i++) {
+    navlinks[i].addEventListener("click", (e) => {
+      for (let i = 0; i < navlinks.length; i++) {
+        navlinks[i].classList.remove("active");
+      }
+      e.currentTarget.classList.add("active");
+    });
+  }
+  console.log(navlinks);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
