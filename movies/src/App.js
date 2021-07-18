@@ -8,11 +8,15 @@ import LifeCycleShort from "./LifeCycleShort";
 class App extends React.Component {
   state = {
     noOfMovies: 0,
+    searchString : ""
   };
 
   receiveMovieData = (number) => {
     this.setState({ noOfMovies: number });
   };
+  receiveSearchParam = (param) =>{
+    this.setState({searchString: param});
+  }
 
   countMovies = (count)=>{
     this.setState({
@@ -34,13 +38,13 @@ class App extends React.Component {
             <div className="col-10">
                 <div className="row">
                 <div className="col-3">
-                    <Search countOfMovies={this.state.noOfMovies}/>
+                    <Search countOfMovies={this.state.noOfMovies}  searchHandler={this.receiveSearchParam}/>
                 </div>
                 </div>
 
                 <div className="row">
                     <div className="col-8">
-                        <Table countHandler={this.countMovies}/>
+                        <Table countHandler={this.countMovies} searchString={this.state.searchString}/>
                     </div>
                 </div>
             </div>

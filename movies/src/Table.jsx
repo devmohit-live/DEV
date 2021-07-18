@@ -17,10 +17,23 @@ class Table extends React.Component {
         // hadler to sned no of movies to App
         this.props.countHandler(json.length);
       });
-   
   }
 
   render() {
+    let movies = [];
+    if (this.props.searchString != "") {
+      let searchString = this.props.searchString.toLowerCase();
+      let allMovies = this.state.movies;
+      for (let i = 0; i < allMovies.length; i++) {
+        let currmovie = allMovies[i];
+        let currmovieTitle = currmovie.title.toLowerCase();
+        if (currmovieTitle.includes(searchString)) {
+          movies.push(currmovie);
+        }
+      }
+    } else {
+      movies = this.state.movies;
+    }
     let numberOfPages = Math.ceil(this.state.movies.length / 5);
     let pages = [];
     for (let i = 1; i <= numberOfPages; i++) {
@@ -30,7 +43,7 @@ class Table extends React.Component {
     let starting = (this.state.currPage - 1) * 5;
     let ending = this.state.currPage * 5 - 1;
 
-    let moviesToDisplay = this.state.movies.slice(
+    let moviesToDisplay = movies.slice(
       starting,
       Math.min(ending, this.state.movies.length - 1) + 1
     );
