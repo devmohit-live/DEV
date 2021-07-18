@@ -8,7 +8,8 @@ import LifeCycleShort from "./LifeCycleShort";
 class App extends React.Component {
   state = {
     noOfMovies: 0,
-    searchString : ""
+    searchString : "",
+    currCategory: "All",
   };
 
   receiveMovieData = (number) => {
@@ -17,6 +18,10 @@ class App extends React.Component {
   receiveSearchParam = (param) =>{
     this.setState({searchString: param});
   }
+  receiveCategory = (category) =>{
+    this.setState({currCategory: category});
+  }
+
 
   countMovies = (count)=>{
     this.setState({
@@ -33,7 +38,7 @@ class App extends React.Component {
         <Navbar />
         <div className="row">
             <div className="col-2 p-4">
-             <Category/>
+             <Category categoryHandler={this.receiveCategory}/>
             </div>
             <div className="col-10">
                 <div className="row">
@@ -44,7 +49,7 @@ class App extends React.Component {
 
                 <div className="row">
                     <div className="col-8">
-                        <Table countHandler={this.countMovies} searchString={this.state.searchString}/>
+                        <Table countHandler={this.countMovies}  categoryFilter={this.state.currCategory}  searchString={this.state.searchString}/>
                     </div>
                 </div>
             </div>

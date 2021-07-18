@@ -23,9 +23,24 @@ class Category extends React.Component {
   render() {
     return (
       <ul className="list-group">
+        <li
+          className="list-group-item"
+          onClick={(e) => {
+            this.props.categoryHandler("All");
+          }}
+          key={0}
+        >
+          All Genre
+        </li>
         {this.state.allGenre.map((el) => {
           return (
-            <li className="list-group-item" key={el["_id"]}>
+            <li
+              className="list-group-item"
+              onClick={(e) => {
+                this.props.categoryHandler(el["name"]);
+              }}
+              key={el["_id"]}
+            >
               {el["name"]}
             </li>
           );

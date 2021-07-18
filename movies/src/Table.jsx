@@ -21,20 +21,25 @@ class Table extends React.Component {
 
   render() {
     let movies = [];
-    if (this.props.searchString != "") {
-      let searchString = this.props.searchString.toLowerCase();
-      let allMovies = this.state.movies;
-      for (let i = 0; i < allMovies.length; i++) {
-        let currmovie = allMovies[i];
-        let currmovieTitle = currmovie.title.toLowerCase();
-        if (currmovieTitle.includes(searchString)) {
-          movies.push(currmovie);
-        }
-      }
+    // category filter
+    if (this.props.categoryFilter != "All") {
+      let filterCat = this.props.categoryFilter;
+      movies = this.state.movies.filter((el) => {
+        return el.genre.name == filterCat;
+      });
     } else {
       movies = this.state.movies;
     }
-    let numberOfPages = Math.ceil(this.state.movies.length / 5);
+
+    // search filtering (after category filter)
+    if (this.props.searchString != "") {
+      let searchString = this.props.searchString.toLowerCase();
+      movies = movies.filter((el) => {
+        return el.title.toLowerCase().includes(searchString);
+      });
+    }
+
+    let numberOfPages = Math.ceil(movies.length / 5);
     let pages = [];
     for (let i = 1; i <= numberOfPages; i++) {
       pages.push(i);
