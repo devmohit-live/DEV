@@ -9,7 +9,7 @@ function Modal(props) {
     <div className={`modal ${props.visible ? "" : "hide"}`}>
       <button
         onClick={() => {
-          props.handleVisible(true);
+          props.handleVisible(false);
         }}
       >
         x
