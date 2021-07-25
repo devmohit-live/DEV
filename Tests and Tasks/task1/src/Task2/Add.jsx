@@ -16,7 +16,6 @@ let Add = (props) => {
               props.activityHandler(tmp);
               console.log(json);
             });
-          alert("New Activity is being added!");
           // // props.activity
           // props.activityHandler([1, 2, 3]);
         }}
