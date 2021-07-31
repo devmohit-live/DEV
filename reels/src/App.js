@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { firestore } from "./firebase";
-
+import Login from "./Login";
 function App() {
   useEffect(() => {
     let f = async () => {
@@ -15,7 +15,11 @@ function App() {
     f();
   }, []);
 
-  return <div></div>;
+  return (
+    <div>
+      <Login />
+    </div>
+  );
 }
 
 export default App;
