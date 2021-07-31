@@ -1,24 +1,39 @@
-import { useEffect } from "react";
-import { firestore } from "./firebase";
+import { useState } from "react";
+// import { firestore } from "./firebase";
 import Login from "./Login";
-function App() {
-  useEffect(() => {
-    let f = async () => {
-      let querySnapshot = await firestore
-        .collection("posts")
-        .limit(2)
-        .orderBy("index", "desc")
-        .get();
-      querySnapshot.forEach((doc) => console.log(doc.data()));
-    };
+import Home from "./Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-    f();
-  }, []);
+function App() {
+  // useEffect(() => {
+  //   let f = async () => {
+  //     // let querySnapshot = await firestore
+  //     //   .collection("posts")
+  //     //   .limit(2)
+  //     //   .orderBy("index", "desc")
+  //     //   .get();
+  //     // querySnapshot.forEach((doc) => console.log(doc.data()));
+  //   };
+
+  //   f();
+  // }, []);
+
+  let [user, setUser] = useState(null);
 
   return (
-    <div>
-      <Login />
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/login">
+          <Login handleUser={setUser} user={user} />
+        </Route>
+        <Route path="/home">
+          <Home user={user} />
+        </Route>
+        <Route path="/">
+          <Home user={user} />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
