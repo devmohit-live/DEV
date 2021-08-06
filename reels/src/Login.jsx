@@ -3,8 +3,6 @@ import { Redirect } from "react-router-dom";
 import { userContext } from "./App";
 import { auth, firestore, signInWithGoogle } from "./firebase";
 
-
-
 let Login = (props) => {
   useEffect(() => {
     // justlike onSnapshot in firestore we have onAuthStateChanged in auth
@@ -31,9 +29,6 @@ let Login = (props) => {
       }
     });
   }, []);
-
-
-
 
   let value = useContext(userContext);
 

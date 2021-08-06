@@ -2,6 +2,8 @@ import { auth } from "./firebase";
 import { Redirect } from "react-router-dom";
 import { userContext } from "./App";
 import { useContext } from "react";
+import VideoCard from "./VideoCard";
+import "./Home.css";
 
 let Home = () => {
   let value = useContext(userContext);
@@ -9,10 +11,14 @@ let Home = () => {
     <div>
       {value ? (
         <>
-          <h1>{value.displayName}</h1>
-          <p>Email: {value.email}</p>
+          <div className="posts-container">
+            <VideoCard />
+            <VideoCard />
+            <VideoCard />
+          </div>
+
           <button
-            className="logut-btn"
+            className="logout-btn"
             onClick={() => {
               auth.signOut();
             }}
@@ -21,8 +27,7 @@ let Home = () => {
           </button>
         </>
       ) : (
-        // manual / forecull routing
-        <Redirect to="/login" />
+        <Redirect to="/" />
       )}
     </div>
   );

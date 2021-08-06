@@ -29,8 +29,11 @@ function App() {
           <Route path="/login">
             <Login handleUser={setUser} />
           </Route>
-          <Route path="/">
+          <Route path="/home">
             <Home />
+          </Route>
+          <Route path="/">
+            <Login handleUser={setUser} />
           </Route>
         </Switch>
       </userContext.Provider>
