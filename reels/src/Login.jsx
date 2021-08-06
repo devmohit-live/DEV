@@ -1,16 +1,28 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import { auth, signInWithGoogle } from "./firebase";
+import { userContext } from "./App";
+import { auth, firestore, signInWithGoogle } from "./firebase";
+
+
+
 let Login = (props) => {
   useEffect(() => {
     // justlike onSnapshot in firestore we have onAuthStateChanged in auth
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(async (user) => {
       // user is null at ther logout event and have some object at login
       if (user) {
-        //login
-
-        //destructing
-        let { displayName, email } = user;
+        let { displayName, email, uid } = user;
+        let docRef = firestore.collection("users").doc(uid);
+        let document = await docRef.get();
+        //has the attribute of exists that check wheather the document actually exixted or the temporary refrence is returned
+        if (!document.exists) {
+          // if not exists then create one woth these values
+          docRef.set({
+            displayName,
+            email,
+            posts: [],
+          });
+        }
 
         props.handleUser({ displayName, email });
         console.log({ displayName, email });
@@ -20,10 +32,15 @@ let Login = (props) => {
     });
   }, []);
 
+
+
+
+  let value = useContext(userContext);
+
   return (
-    <div>
+    <div className="my-container">
       {/* forecful routing/ manual routing */}
-      {props.user ? <Redirect to="/home" /> : ""}
+      {value ? <Redirect to="/home" /> : ""}
 
       <button
         onClick={signInWithGoogle}

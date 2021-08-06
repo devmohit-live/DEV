@@ -3,7 +3,9 @@ import { useState } from "react";
 import Login from "./Login";
 import Home from "./Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { createContext } from "react";
 
+let userContext = createContext();
 function App() {
   // useEffect(() => {
   //   let f = async () => {
@@ -22,19 +24,19 @@ function App() {
 
   return (
     <Router>
-      <Switch>
-        <Route path="/login">
-          <Login handleUser={setUser} user={user} />
-        </Route>
-        <Route path="/home">
-          <Home user={user} />
-        </Route>
-        <Route path="/">
-          <Home user={user} />
-        </Route>
-      </Switch>
+      <userContext.Provider value={user}>
+        <Switch>
+          <Route path="/login">
+            <Login handleUser={setUser} />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </userContext.Provider>
     </Router>
   );
 }
 
+export { userContext };
 export default App;
