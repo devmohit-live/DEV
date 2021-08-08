@@ -6,7 +6,6 @@ import VideoCard from "./VideoCard";
 import "./Home.css";
 
 let Home = () => {
-  
   let value = useContext(AuthContext);
   let [posts, setPosts] = useState([]);
 
@@ -16,7 +15,7 @@ let Home = () => {
       .onSnapshot((querySnapshot) => {
         setPosts(
           querySnapshot.docs.map((doc) => {
-            return doc.data();
+            return { ...doc.data(), id: doc.id };
           })
         );
       });
@@ -31,9 +30,10 @@ let Home = () => {
       {value ? (
         <>
           <div className="posts-container">
-            <VideoCard />
-            <VideoCard />
-            <VideoCard />
+            {posts.map((post, index) => {
+              // console.log(post);
+              return <VideoCard key={index} post={post} />;
+            })}
           </div>
 
           <button
