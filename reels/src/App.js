@@ -3,43 +3,25 @@ import { useState } from "react";
 import Login from "./Login";
 import Home from "./Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { createContext } from "react";
+import AuthProvider from "./AuthProvider";
 
-let userContext = createContext();
 function App() {
-  // useEffect(() => {
-  //   let f = async () => {
-  //     // let querySnapshot = await firestore
-  //     //   .collection("posts")
-  //     //   .limit(2)
-  //     //   .orderBy("index", "desc")
-  //     //   .get();
-  //     // querySnapshot.forEach((doc) => console.log(doc.data()));
-  //   };
-
-  //   f();
-  // }, []);
-
-  let [user, setUser] = useState(null);
-
   return (
     <Router>
-      <userContext.Provider value={user}>
+      <AuthProvider>
         <Switch>
           <Route path="/login">
-            <Login handleUser={setUser} />
+            <Login />
           </Route>
           <Route path="/home">
             <Home />
           </Route>
           <Route path="/">
-            <Login handleUser={setUser} />
+            <Login />
           </Route>
         </Switch>
-      </userContext.Provider>
+      </AuthProvider>
     </Router>
   );
 }
-
-export { userContext };
 export default App;
