@@ -2,14 +2,16 @@ import "../css/product.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/actions";
-let Product = () => {
+let Product = (props) => {
   let dispatch = useDispatch();
+
+  // console.log(props.data);
   return (
     <>
       <div className="product-container">
-        <Link to="/preview/1">
+        <Link to={`/preview/${props.data.id}`}>
           <div className="product-img-container">
-            <img className="product-img" src="/phone.jpeg" />
+            <img className="product-img" src={props.data.img} />
           </div>
         </Link>
 
@@ -17,7 +19,7 @@ let Product = () => {
           <button
             onClick={() => {
               console.log("dispatching");
-              dispatch(addToCart(1));
+              dispatch(addToCart(props.data.id));
             }}
           >
             Buy

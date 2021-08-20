@@ -6,7 +6,7 @@ export const addToCart = (val) => {
 };
 export const removeFromCart = (val) => {
   return {
-    type: "ADD_TO_CART",
+    type: "REMOVE_FROM_CART",
     payload: val,
   };
 };

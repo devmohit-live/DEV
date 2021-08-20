@@ -21,6 +21,7 @@
 .listing-description {
   margin-top: 2rem;
   font-size: 1.2rem;
+  padding-left: 2rem;
 }
 
 .preview-listing button {
@@ -30,8 +31,7 @@
   font-size: 1.3rem;
   border-radius: 4px;
   color: white;
+  margin: auto;
+  margin-top: 5rem;
   background: #f9ca24;
-  position: fixed;
-  bottom: 2rem;
-  right: 25%;
 }
