@@ -8,12 +8,14 @@ let Home = () => {
   let history = useHistory();
   return (
     <>
+      <div className="my-container">
+        <div id="liveAlertPlaceholder"></div>
+      </div>
       <div className="product-preview-container">
         {state.map((el) => {
           return <Product data={el} />;
         })}
       </div>
-
       <button
         onClick={() => {
           history.push("/cart");

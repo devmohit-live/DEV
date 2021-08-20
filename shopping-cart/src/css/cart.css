@@ -1,0 +1,10 @@
+.tr-cart-button,
+.tr-cart-button-add {
+  border: none;
+  border-radius: 50%;
+  color: #c0392b;
+  background: white;
+}
+.tr-cart-button-add {
+  color: #27ae60;
+}

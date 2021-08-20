@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../css/cart.css";
-import { removeFromCart } from "../redux/actions";
+import { addToCart, removeFromCart } from "../redux/actions";
 
 let Cart = () => {
   let dispatch = useDispatch();
@@ -20,6 +20,7 @@ let Cart = () => {
             <th scope="col">Cost</th>
             <th scope="col">Price</th>
             <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -34,11 +35,22 @@ let Cart = () => {
                 <td>{el.incart * el.Price}</td>
                 <td>
                   <button
+                    className="tr-cart-button"
                     onClick={() => {
                       dispatch(removeFromCart(el.id));
                     }}
                   >
-                    -
+                    <span class="material-icons">remove_circle</span>
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="tr-cart-button-add"
+                    onClick={() => {
+                      dispatch(addToCart(el.id));
+                    }}
+                  >
+                    <span class="material-icons">add_circle</span>
                   </button>
                 </td>
               </tr>

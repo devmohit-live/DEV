@@ -1,4 +1,7 @@
-.my-container {
+.my-nav-container {
   display: flex;
   justify-content: space-between;
+}
+a {
+  text-decoration: none;
 }
