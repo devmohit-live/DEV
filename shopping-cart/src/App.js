@@ -1,9 +1,13 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Cart from "../components/cart";
-import Product from "../components/product";
-import Home from "../components/home";
-import Navbar from "../components/navbar";
+import Cart from "./components/cart";
+import Home from "./components/home";
+import Navbar from "./components/navbar";
+import Preview from "./components/preview";
+import { useSelector } from "react-redux";
+
 function App() {
+  let state = useSelector((state) => state);
+  console.log(state);
   return (
     <div className="App">
       <Router>
@@ -12,10 +16,10 @@ function App() {
           <Route path="/cart">
             <Cart />
           </Route>
-          <Route path="/product">
-            <Product />
+          <Route path="/preview/:id">
+            <Preview />
           </Route>
-          <Route path="/home">
+          <Route path="/">
             <Home />
           </Route>
         </Switch>
