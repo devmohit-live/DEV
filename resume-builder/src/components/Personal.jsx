@@ -5,3 +5,5 @@ let Personal = () => {
   console.log(t);
   return <h1>Personal</h1>;
 };
+
+export default Personal;

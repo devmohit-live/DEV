@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { auth } from "../firebase";
 import { setTemplate } from "../redux/actions";
-import "./css/home.css";
+import "./css/Home.css";
 
 let Home = () => {
   let user = useSelector((state) => state.user);
