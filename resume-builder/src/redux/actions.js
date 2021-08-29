@@ -13,3 +13,10 @@ export const setTemplate = (code) => {
     payload: code,
   };
 };
+
+export const setDetails = (details) => {
+  return {
+    type: "SET_DETAILS",
+    payload: details,
+  };
+};
